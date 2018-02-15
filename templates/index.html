@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load i18n staticfiles mezzanine_tags blog_tags %}
+
+{% block content %}
+
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  <!-- Automatic Slideshow Images -->
+
+
+{% for p in f %}
+  <div class="mySlides w3-display-container w3-center">
+    <img src="{{ p.image.url }}" style="width:100%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+
+      <h3>{{ p.text1 }}</h3>
+      <p><b>{{ p.text2 }}</b></p>
+    </div>
+  </div>
+{% endfor %}
+
+
+  <!-- The Band Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+
+    {% for p in sec1 %}
+
+
+    <h2 class="w3-wide">{{ p.title }}</h2>
+    <p class="w3-opacity"><i>{{ p.subTitle }}</i></p>
+    <p class="w3-justify">{{ p.text }}</p>
+
+   {% endfor %}
+
+
+    <div class="w3-row w3-padding-32">
+
+          {% for p in f %}
+
+      <div class="w3-third">
+        <p>{{ p.text1 }}</p>
+        <img src="{{ p.image.url }}" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
+      </div>
+
+    {% endfor %}
+
+
+    </div>
+
+  </div>
+
+  <!-- The Tour Section -->
+  <div class="w3-black" id="tour">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">SECTION 2</h2>
+      <p class="w3-opacity w3-center"><i>Buy some Widggets</i></p><br>
+
+      <ul class="w3-ul w3-border w3-white w3-text-grey">
+
+      {% for p in sec2 %}
+        <li class="w3-padding">{{ p.productDate|date:"M" }}
+
+        {% if p.productNumber == 0 %}
+            <span class="w3-tag w3-red w3-margin-left">Sold out</span>
+        {% else %}
+            <span class="w3-badge w3-right w3-margin-right">{{ p.productNumber }}</span>
+        {% endif %}
+        </li>
+
+      {% endfor %}
+
+      </ul>
+
+
+      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+            {% for p in sec2 %}
+
+        <div class="w3-third w3-margin-bottom">
+          <img src="{{ p.image.url }}" alt="New York" style="width:100%" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>{{ p.title }}</b></p>
+            <p class="w3-opacity">{{ p.productDate|date:"Y M d" }}</p>
+            <p>{{ p.text }}</p>
+            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Widgget</button>
+          </div>
+        </div>
+        {% endfor %}
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticket Modal -->
+  <div id="ticketModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4">
+      <header class="w3-container w3-black w3-center w3-padding-32">
+        <span onclick="document.getElementById('ticketModal').style.display='none'"
+       class="w3-button w3-teal w3-xlarge w3-display-topright">×</span>
+        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Widgget</h2>
+      </header>
+      <div class="w3-container">
+        <p><label><i class="fa fa-shopping-cart"></i> Widgget: $15 </label></p>
+        <input class="w3-input w3-border" type="text" placeholder="How many?">
+        <p><label><i class="fa fa-user"></i> Send To</label></p>
+        <input class="w3-input w3-border" type="text" placeholder="Enter email">
+        <button class="w3-button w3-block w3-black w3-padding-16 w3-section w3-right">PAY <i class="fa fa-check"></i></button>
+        <button class="w3-button w3-red w3-section" onclick="document.getElementById('ticketModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
+        <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Contact Section -->
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+    <h2 class="w3-wide w3-center">CONTACT</h2>
+    <p class="w3-opacity w3-center"><i>Fan? Drop a note!</i></p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
+        <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
+      </div>
+      <div class="w3-col m6">
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!-- End Page Content -->
+</div>
+{% endblock %}
