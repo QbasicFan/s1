@@ -2,6 +2,18 @@
 Simple template 1
 Template starter
 
+3 Sections + contact
+
+editable Model
+
+
+Front => auto slider 
+
+Section1s
+
+Section2s
+
+
 
 
 ![alt text](https://github.com/QbasicFan/s1/blob/master/s1Front.png)
