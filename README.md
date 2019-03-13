@@ -26,7 +26,7 @@ Install
 
 1)
 
-git clone https://github.com/QbasicFan/s1 s1
+git clone https://github.com/QbasicFan/s1 
 
 2) settings.py
 
